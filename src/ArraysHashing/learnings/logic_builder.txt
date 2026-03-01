@@ -19,3 +19,14 @@
      }
 
    3 replaces 4 [ google prefers depends operation like hasNegative n->n<0 ] 
+
+   5.return new ArrayList<>(groupWords.values());  // one line!
+   6.List<List<String>> result = new ArrayList<List<String>>();
+     for(Map.Entry<String,List<String>> group : groupWords.entrySet()){
+       result.add(group.getValue());
+     }
+
+   5 replaces 6 if we want only values we can use map.getValues()
+
+   7.char[] freq = new char[26];
+     new String(freqKey); // internally it creates unique values like \u0002 \u0004  0  0  \u0001
