@@ -1,0 +1,3 @@
+217.
+   1.Duplicates - Sorting Helps
+   2.HashMap when index needed , hashSet when only value matters
