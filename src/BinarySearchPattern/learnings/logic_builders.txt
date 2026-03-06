@@ -1,0 +1,20 @@
+Binary search Patterns :
+
+Pattern A : Lookup for every element ( == target found ) , we can remove mid so 
+            while(left<=right) also left=mid+1,right=mid-1;
+            
+Pattern B : Lookup like find first occurance of target ( sometimes mid may be the solution so we keep mid )
+            while(left<right) also left=mid+1,right=mid;
+            
+            
+mid calculation : int mid = left + (right-left)/2; // pevents overflow when left = 20000 right=25000 at that time (right+left)/2 overflowed also when subarray [7,2,4,6] left start from left=4,right=7 mid fails so
+
+
+2D--->1D : flattended the sorted 2d array. Derivative is index = row*cols+col
+we skip row*cols before reach row r ( if 4x3 is there to reach 2(indexed)nd row(index:2) we should skip 2*3=6 elements before reach )
+taking col steps to reach specified column so row*cols+col ( inside that row we move col steps )
+
+eventually : index = (row*cols)+col
+
+
+
