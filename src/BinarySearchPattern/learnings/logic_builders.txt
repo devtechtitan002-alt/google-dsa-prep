@@ -17,4 +17,8 @@ taking col steps to reach specified column so row*cols+col ( inside that row we 
 eventually : index = (row*cols)+col
 
 
+after binary search loop ends noted things :
+   1.left  = first element > target
+   2.right = last element ≤ target
+
 
