@@ -4,6 +4,7 @@ import java.util.Arrays;
 public class BurstBallons {
     static class Solution {
 
+        /*
     // recursive approach
 
     public int burstBallons(int[] nums,int s,int e){
@@ -28,6 +29,10 @@ public class BurstBallons {
 
         return burstBallons(border,1,nums.length);
     }
+
+    */
+
+    /*
 
     // DP Memoization
 
@@ -62,64 +67,47 @@ public class BurstBallons {
         return burstBallonsDP(border,1,nums.length,memo);
     }
 
+    */
+   
 
     // DP Bottom Up
 
-    public int burstBallonsDPBU(int[] nums,int s,int e,int[][] memo){
-        if(s > e) return 0;
+    public int maxCoins(int[] nums) {
 
-        if(memo[s][e] != -1) return memo[s][e];
+    int n = nums.length;
 
-        int coin = 0;
+    int[] border = new int[n + 2];
+    border[0] = 1;
+    border[n + 1] = 1;
 
-        for(int k=s;k<=e;k++){
-            coin = Math.max(coin,(nums[s-1]*nums[k]*nums[e+1] + burstBallonsDPBU(nums,s,k-1,memo) + burstBallonsDPBU(nums,k+1,e,memo)));
-        }
-
-        return memo[s][e] = coin;
+    for(int i = 0; i < n; i++) {
+        border[i + 1] = nums[i];
     }
 
-    public int maxCoinsDPBU(int[] nums) {
-        int[] border = new int[nums.length+2];
-        
-        for(int i=0;i<border.length;i++){
-            if(i==0 || i==nums.length+1) border[i] = 1;
-            else border[i] = nums[i-1];
-        }
+    int[][] dp = new int[n + 2][n + 2];
 
-        int[][] memo = new int[nums.length+1][nums.length+1];
+    // length of interval
+    for(int len = 1; len <= n; len++) {
 
-        for(int[] dps : memo){
-            Arrays.fill(dps,-1);
-        }
+        for(int s = 1; s + len - 1 <= n; s++) {
 
-        int[][] dp = new int[nums.length+2][nums.length+2];
+            int e = s + len - 1;
 
-        int s=1,n=dp.length;
+            // choose k as last balloon burst
+            for(int k = s; k <= e; k++) {
 
-        for(int i=n;i>=1;i--){
+                int coins =
+                    border[s - 1] * border[k] * border[e + 1]
+                    + dp[s][k - 1]
+                    + dp[k + 1][e];
 
-    for(int j=i;j<=n;j++){
-
-        for(int k=i;k<=j;k++){
-
-            dp[i][j] =
-                Math.max(
-                    dp[i][j],
-
-                    border[i-1]*border[k]*border[j+1]
-                    +
-                    dp[i][k-1]
-                    +
-                    dp[k+1][j]
-                );
+                dp[s][e] = Math.max(dp[s][e], coins);
+            }
         }
     }
+
+    return dp[1][n];
 }
-
-        return dp[1][n];
-
-    }
 
     }
 

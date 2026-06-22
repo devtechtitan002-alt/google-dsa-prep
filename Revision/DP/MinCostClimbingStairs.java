@@ -50,6 +50,7 @@ public class MinCostClimbingStairs {
     */
 
   
+    /*
     // Bottom Up
     public int minCostClimbingStairs(int[] cost) {
         int[] dp = new int[cost.length+2];
@@ -60,7 +61,25 @@ public class MinCostClimbingStairs {
 
         return Math.min(dp[0],dp[1]);
     }
+    */
 
+
+    // O(1) space
+    public int minCostClimbingStairs(int[] cost) {
+        
+        int temp1=0,temp2=0;
+
+        for(int i=cost.length-1;i>=0;i--){
+            int curr = cost[i] + Math.min(temp1,temp2);
+
+            int temp = temp1;
+            temp1 = curr;
+            temp2 = temp;
+
+        }
+
+        return Math.min(temp1,temp2);
+    }
 
     }
 
