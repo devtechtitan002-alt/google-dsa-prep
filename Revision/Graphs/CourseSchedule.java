@@ -77,7 +77,7 @@ public class CourseSchedule {
         }
 
          // Cycle exists
-        if (order.size() != indegrees.size()) {
+        if (order.size() != numCourses) {
             return false;
         }
 
@@ -95,7 +95,7 @@ public class CourseSchedule {
         Set<Integer> visiting = new HashSet<>();
         List<Integer> order = new ArrayList<>();
 
-         for(int key=0;key<numCourses;key++){
+        for(int key=0;key<numCourses;key++){
             if(!visited.contains(key)){
                if(dfs(key,graph,visiting,visited,order)) return false;
             }
